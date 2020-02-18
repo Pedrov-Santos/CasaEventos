@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+<section layout:fragment="conteudo">
+
+<h2 class="section_title">Nova Casa De Show</h2>
+
+	<form class="needs-validation" method="POST" action="/home/novaCasa" th:object="${casaShow}">
+	
+	<input type = "hidden" th:field="*{codigo}"/>
+	
+	<div class="alert alert-success"
+			th:if="${! #strings.isEmpty(mensagem)}">
+			<button type="button" class="close " data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+			<span th:text="${mensagem}">Moto salva !!!!!</span>
+		</div>
+
+		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+			<div th:each="detailedError : ${#fields.detailedErrors()} ">
+			<button type="button" class="close " data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+				<span th:text="${detailedError.message}"></span>
+			</div>
+		</div>
+	
+	
+		
+			<div class="form-gruop row ">
+
+				<label for="enderecoCasa"
+					class="col-sm-3 col-form-label text-right">Endereço da
+					Casa de Show</label>
+				<div class="col-sm-4">
+					<input required="required" type="text" class="form-control" id="enderecoCasa" th:field="*{enderecoCasa}"
+						placeholder="ex: AV... RUA..." th:classappend="${#fields.hasErrors('enderecoCasa') } ? 'is-invalid'" >
+				</div>
+
+			</div>
+			<div class="form-gruop row ">
+
+				<label for="numeroCasa"
+					class="col-sm-3 col-form-label text-right ">Número </label>
+				<div class="col-sm-2">
+					<input required="required" type="text" class="form-control" id="numeroCasa" th:field="*{numeroCasa}" value=""
+						placeholder="ex: 585" th:classappend="${#fields.hasErrors('numeroCasa') } ? 'is-invalid'" >
+				</div>
+
+			</div>
+			<div class="form-gruop row ">
+
+				<label for="cidadeCasa"
+					class="col-sm-3 col-form-label text-right ">Cidade </label>
+				<div class="col-sm-3">
+					<input required="required" type="text" class="form-control" id="cidadeCasa" th:field="*{cidadeCasa}"
+						placeholder="ex: São-Paulo" th:classappend="${#fields.hasErrors('cidadeCasa') } ? 'is-invalid'" >
+				</div>
+
+			</div>
+			<div class="form-gruop row ">
+
+				<label for="nomeCasa" class="col-sm-3 col-form-label text-right ">Nome
+					da casa</label>
+				<div class="col-sm-3">
+					<input required="required" type="text" class="form-control" id="nomeCasa" th:field="*{nomeCasa}"
+						placeholder="ex: Morumbi" th:classappend="${#fields.hasErrors('nomeCasa') } ? 'is-invalid'" >
+				</div>
+
+			</div>
+			<div id="salvar">
+				<button class="btn btn-outline-success col-sm-2" type="submit">Salvar</button>
+			</div>
+		
+	</form>
+</section>

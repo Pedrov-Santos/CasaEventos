@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+<section layout:fragment="conteudo">
+
+<h2 class="section_title">Novo Evento</h2>
+
+	<form class="needs-validation" method="POST" action="/home/NovoEvento">
+
+		<div class="form-gruop row ">
+
+			<label for="nomeEvento"
+				class="col-sm-3 col-form-label text-right">Nome do Evento</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="nomeEvento" name="nomeEvento"
+					placeholder="ex: show da xuxa">
+			</div>
+
+		</div>
+		<div class="form-gruop row ">
+
+			<label for="capacidadeEvento" class="col-sm-3 col-form-label text-right ">Capacidade de Pessoas</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" id="capacidadeEvento" name="capacidadeEvento"
+					placeholder="ex: 1000">
+			</div>
+
+		</div>
+		
+		
+		<div class="form-gruop row ">
+
+			<label for="valorEvento" class="col-sm-3 col-form-label text-right ">Valor do Ingresso</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" id="valorEvento" name="valorEvento"
+					placeholder="ex: 550,00">
+			</div>
+
+		</div>
+		
+		
+			<div class="form-group row">
+				<label for="dataEvento"class="col-sm-3 col-form-label text-right">Data Do Evento</label>
+				<div class="col-sm-2">
+					<input type="text" class=" form-control" id="dataEvento" name="dataEvento"
+						 placeholder="ex: 22/04/1999" 
+						data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+						data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="buttom"/>
+				</div>
+			</div>
+		
+		<div class="form-gruop row ">
+			<label class="col-sm-3 col-form-label text-right"
+				for="selecionarGenero">Selecionar Gênero</label>
+			<div class="col-sm-2">
+				<select class="form-control" id="selecionarGenero" name ="selecionarGenero"> 
+				
+					
+				</select>
+			</div>
+		</div>
+		<div class="form-gruop row ">
+			<label class="col-sm-3 col-form-label text-right"
+				for="selecionarCasa">Escolher Casa de show do Evento</label>
+			<div class="col-sm-2">
+				<select class="form-control" id="selecionarCasa" name="selecionarCasa">
+				
+				<option th:each="selecionarCasa : ${todasCasasShow}"
+							th:value="${selecionarCasa}" th:text="${selecionarCasa.nomeCasa}"></option>
+					
+				</select>
+			</div>
+		</div>
+
+		<div id="salvar">
+			<button class="btn btn-outline-success col-sm-2" type="submit">Salvar</button>
+		</div>
+
+	</form>
+</section>
+
+
+
+	
