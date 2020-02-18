@@ -33,7 +33,7 @@ public class NovoShow {
 	private Date dataEvento;
 	
 
-	private String selecionarGenero;
+	private StatusSelecionarGenero selecionarGenero;
 	
 	
 	private String selecinarCasa;
@@ -86,13 +86,14 @@ public class NovoShow {
 		this.selecinarCasa = selecinarCasa;
 	}
 
-	public String getSelecionarGenero() {
+	public StatusSelecionarGenero getSelecionarGenero() {
 		return selecionarGenero;
 	}
 
-	public void setSelecionarGenero(String selecionarGenero) {
+	public void setSelecionarGenero(StatusSelecionarGenero selecionarGenero) {
 		this.selecionarGenero = selecionarGenero;
 	}
+
 
 	
 }

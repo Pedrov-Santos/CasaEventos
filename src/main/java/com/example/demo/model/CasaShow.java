@@ -17,9 +17,18 @@ public class CasaShow {
 	@NotNull
 	@NotEmpty(message = "Endereço obrigatorio.")
 	@Size(max = 75, message = "O endereço não pode ultrapassar 75 caracteres.")
+	@Size(min=10 , message = "O endeço deve ter no minímo 10 caracteres.")
 	private String enderecoCasa;
 	
 	
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
 	@NotNull(message = "Numero Obrigatório.")
 	private int numeroCasa;
 	

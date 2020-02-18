@@ -57,7 +57,7 @@
 				for="selecionarGenero">Selecionar Gênero</label>
 			<div class="col-sm-2">
 				<select class="form-control" id="selecionarGenero" name ="selecionarGenero"> 
-				
+					<option th:each="selecionarGenero : ${todosGeneros}" th:value="${selecionarGenero}" th:text="${selecionarGenero.descricao}"></option>
 					
 				</select>
 			</div>

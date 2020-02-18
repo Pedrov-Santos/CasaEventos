@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.CasaShow;
 import com.example.demo.model.NovoShow;
+import com.example.demo.model.StatusSelecionarGenero;
 import com.example.demo.repository.Casas;
 import com.example.demo.repository.Shows;
 
@@ -87,22 +89,34 @@ public class EventoController {
 	
 	////////////////////////////////////// EDITAR ///////////////////////////////////////////////////
 	
-	@RequestMapping("/editarCasa/{codigo}")
-	public ModelAndView editarCasa(@PathVariable Long codigo) {
+	@RequestMapping("/novaCasa/{codigo}")
+	public ModelAndView editarCasa(@PathVariable ("codigo") CasaShow casa ) {
 		ModelAndView mv = new ModelAndView("NovaCasa");
-		Optional<CasaShow> casa = casas.findById(codigo);
-		mv.addObject(casa.get());
+		mv.addObject(casa);
 		return mv ;
 	}
 	
 	
 	
+	////////////////////////////////////// EXCLUIR //////////////////////////////////////////////////
 	
+	@RequestMapping(value = "/listaCasas/{codigo}" , method = RequestMethod.POST )
+	public String excluirCasa(@PathVariable Long codigo) {
+		casas.deleteById(codigo);
+		return "redirect:/home/listaCasas";
+		
+		
+	}
 	////////////////////////////////////// LISTAS //////////////////////////////////////////////////
 	
 	@ModelAttribute("todasCasasShow")
 	public List<CasaShow> todasCasasShow(){
 		
 		return casas.findAll();
+	}
+	
+	@ModelAttribute("todosGeneros")
+	public List<StatusSelecionarGenero> todosGeneros(){
+		return Arrays.asList(StatusSelecionarGenero.values());
 	}
 }
