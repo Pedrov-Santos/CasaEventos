@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
@@ -32,11 +33,10 @@ public class NovoShow {
 	@Temporal(TemporalType.DATE)
 	private Date dataEvento;
 	
-
 	private StatusSelecionarGenero selecionarGenero;
 	
-	
-	private String selecinarCasa;
+	@ManyToOne
+	private CasaShow selecinarCasas;
 
 	public String getNomeEvento() {
 		return nomeEvento;
@@ -78,12 +78,15 @@ public class NovoShow {
 		this.codigo = codigo;
 	}
 
-	public String getSelecinarCasa() {
-		return selecinarCasa;
+
+
+
+	public CasaShow getSelecinarCasas() {
+		return selecinarCasas;
 	}
 
-	public void setSelecinarCasa(String selecinarCasa) {
-		this.selecinarCasa = selecinarCasa;
+	public void setSelecinarCasas(CasaShow selecinarCasas) {
+		this.selecinarCasas = selecinarCasas;
 	}
 
 	public StatusSelecionarGenero getSelecionarGenero() {

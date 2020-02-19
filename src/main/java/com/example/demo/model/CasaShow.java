@@ -1,9 +1,13 @@
 package com.example.demo.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -20,15 +24,6 @@ public class CasaShow {
 	@Size(min=10 , message = "O endeço deve ter no minímo 10 caracteres.")
 	private String enderecoCasa;
 	
-	
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
 	@NotNull(message = "Numero Obrigatório.")
 	private int numeroCasa;
 	
@@ -39,7 +34,18 @@ public class CasaShow {
 	@NotEmpty(message = "Nome da casa obrigatorio.")
 	@Size(max = 50 , message = "O nome da casa não pode conter mais de 35 caracteres.")
 	private String nomeCasa;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="selecinarCasas")
+	private List<NovoShow> novoShow;
 
+	
+	public Long getCodigo() {
+		return codigo;
+	}
+	
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 	public String getEnderecoCasa() {
 		return enderecoCasa;
 	}
@@ -70,6 +76,14 @@ public class CasaShow {
 
 	public void setNomeCasa(String nomeCasa) {
 		this.nomeCasa = nomeCasa;
+	}
+
+	public List<NovoShow> getNovoShow() {
+		return novoShow;
+	}
+
+	public void setNovoShow(List<NovoShow> novoShow) {
+		this.novoShow = novoShow;
 	}
 
 	

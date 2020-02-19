@@ -27,7 +27,7 @@
    padding-top: 45px;
     
 }
-#body{
+.body{
 	background-image: url(/imagens/fundo.jpg);
 	background-repeat: no-repeat;
 	background-size: 110%
@@ -82,7 +82,7 @@
 #tabela{
 	   color: #fff;
 	   text-transform: uppercase;
-	   font-size: 20px;
+	   font-size: 15px;
     
 }
 #icone{

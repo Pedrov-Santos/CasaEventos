@@ -6,17 +6,20 @@
 
 <section layout:fragment="conteudo">
 
+
+	<form class="needs-validation responsive" method="POST" action="/home/novoEvento" th:if="${!#lists.isEmpty(todasCasasShow)}">
+	
+	
 <h2 class="section_title">Novo Evento</h2>
-
-	<form class="needs-validation" method="POST" action="/home/NovoEvento">
-
+		
+	
 		<div class="form-gruop row ">
 
 			<label for="nomeEvento"
 				class="col-sm-3 col-form-label text-right">Nome do Evento</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="nomeEvento" name="nomeEvento"
-					placeholder="ex: show da xuxa">
+					placeholder="ex: show da xuxa" required>
 			</div>
 
 		</div>
@@ -25,7 +28,7 @@
 			<label for="capacidadeEvento" class="col-sm-3 col-form-label text-right ">Capacidade de Pessoas</label>
 			<div class="col-sm-2">
 				<input type="text" class="form-control" id="capacidadeEvento" name="capacidadeEvento"
-					placeholder="ex: 1000">
+					placeholder="ex: 1000" required>
 			</div>
 
 		</div>
@@ -36,7 +39,7 @@
 			<label for="valorEvento" class="col-sm-3 col-form-label text-right ">Valor do Ingresso</label>
 			<div class="col-sm-2">
 				<input type="text" class="form-control" id="valorEvento" name="valorEvento"
-					placeholder="ex: 550,00">
+					placeholder="ex: 550,00" required>
 			</div>
 
 		</div>
@@ -46,7 +49,7 @@
 				<label for="dataEvento"class="col-sm-3 col-form-label text-right">Data Do Evento</label>
 				<div class="col-sm-2">
 					<input type="text" class=" form-control" id="dataEvento" name="dataEvento"
-						 placeholder="ex: 22/04/1999" 
+						 placeholder="ex: 22/04/1999" required
 						data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
 						data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="buttom"/>
 				</div>
@@ -64,22 +67,25 @@
 		</div>
 		<div class="form-gruop row ">
 			<label class="col-sm-3 col-form-label text-right"
-				for="selecionarCasa">Escolher Casa de show do Evento</label>
+				for="selecionarCasas">Escolher Casa de show do Evento</label>
 			<div class="col-sm-2">
-				<select class="form-control" id="selecionarCasa" name="selecionarCasa">
+				<select class="form-control" id="selecionarCasas" name="selecinarCasas">
 				
-				<option th:each="selecionarCasa : ${todasCasasShow}"
-							th:value="${selecionarCasa}" th:text="${selecionarCasa.nomeCasa}"></option>
+				<option th:each="Casa : ${todasCasasShow}"
+							th:value="${Casa.codigo}" th:text="${Casa.nomeCasa}"></option>
 					
 				</select>
 			</div>
 		</div>
+		  
 
 		<div id="salvar">
 			<button class="btn btn-outline-success col-sm-2" type="submit">Salvar</button>
 		</div>
-
 	</form>
+	 <div class="text-center section_title" th:if="${#lists.isEmpty(todasCasasShow)}">É nescesario pelo menos ter uma casa de show cadastrada para poder cadastrar um novo evento :( 
+		<a id="botaoLogin2" type="button" class="btn btn-dark" href="/home/novaCasa">Cadastrar nova Casa</a> </div>
+	
 </section>
 
 
