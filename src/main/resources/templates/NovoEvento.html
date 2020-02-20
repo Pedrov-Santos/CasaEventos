@@ -40,7 +40,7 @@
 
 			<label for="valorEvento" class="col-sm-3 col-form-label text-right ">Valor do Ingresso</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control js-valor" id="valorEvento" th:field="*{valorEvento}"
+				<input type="text" class="form-control js-currency " id="valorEvento" th:field="*{valorEvento}"
 					placeholder="ex: 550,00" required th:classappend="${#fields.hasErrors('valorEvento') } ? 'is-invalid'" >
 			</div>
 

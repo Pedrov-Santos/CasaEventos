@@ -8,16 +8,18 @@
 
 <h2 class="section_title">Shows Cadastrados</h2>
 
+
+
 	<table class="table table-striped container " id="tabela" >
     <tbody>
     <tr >
     
-        <th width="15%" >Evento <img src="/imagens/listaShow/evento.png" width="25" height="25" ></th>
-        <th class="text-center" width="10%" title="Capacidade Total" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/capacidade.png"  width="25" height="25" > </th>
-        <th class="text-center" width="10%" title="Valor do Ingresso" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/valor.png"  width="25" height="25"  > </th>
+        <th width="20%" >Evento <img src="/imagens/listaShow/evento.png" width="25" height="25" ></th>
+        <th class="text-center"  title="Capacidade Total" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/capacidade.png"  width="25" height="25" > </th>
+        <th class="text-center" width="15%" title="Valor do Ingresso" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/valor.png"  width="25" height="25"  > </th>
         <th class="text-center" width="15%" title="Data" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/dataEvento.png"  width="25" height="25" ></th>
         <th class="text-center" width="10%" title="Gênero" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/genero.png"  width="25" height="25" ></th>
-        <th class="text-center" width="25%" title="Casa do Show" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/casa.png"  width="25" height="25"></th>
+        <th class="text-center" width="25%" title="Casa do Evento" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/casa.png"  width="25" height="25"></th>
         <th class="text-right"  width="20%"></th>
     </tr> 
   
@@ -27,7 +29,7 @@
         <td th:text="${evento.nomeEvento}"></td>
         <td class="text-center" th:text="${evento.capacidadeEvento}"></td>
         <td class="text-center" th:text="|R$ ${{evento.valorEvento}}|"></td>
-        <td class="text-center" th:text="${evento.dataEvento}"></td>
+        <td class="text-center" th:text="${{evento.dataEvento}}"></td>
         <td class="text-center" th:text="${evento.selecionarGenero.descricao}"></td>
         <td class="text-center" th:text=${evento.selecinarCasas.nomeCasa} ></td>
         <td class="text-right">

@@ -1,8 +1,4 @@
 
-$(function(){
-	$('[rel="tooltip"]').tooltip();
-	$('.js-valor').maskMoney({decimal: ',' , thousands: '.' ,  });
-});
 $('#excluirCasa').on('show.bs.modal', function(event){
 	var button = $(event.relatedTarget);
 	
@@ -31,4 +27,8 @@ $('#excluirShow').on('show.bs.modal', function(event){
 		action += '/';
 	}
 	form.attr('action', action + codigoShow);
+});
+$(function(){
+	$('[rel="tooltip"]').tooltip();
+	$('.js-currency').maskMoney({decimal: ',' , thousands: '.' , allowzero: true  });
 });

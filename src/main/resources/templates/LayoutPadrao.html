@@ -20,26 +20,20 @@
 
 <ul class="nav justify-content-center">
 <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle btn btn-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Eventos</a>
-    <div class="dropdown-menu">
-      
-     <div class="dropdown-divider"></div>
-      <a class="dropdown-item btn btn-light"  href="/home" >Principais Eventos</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item btn btn-light" href="#todosEventos">Todos os Eventos</a>
-    </div>
+
+      <a class="nav-link btn btn-light"  href="/home" >Principais Eventos</a>
+    
   </li>
 
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle btn btn-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cadastrar</a>
-    <div class="dropdown-menu">
-      
-     <div class="dropdown-divider"></div>
-      <a class="dropdown-item btn btn-light" href="/home/novoEvento">Novo evento</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item btn btn-light" href="/home/novaCasa">Nova casa de Show</a>
-      </div>
+
+  <li class="nav-item">
+          <a class="nav-link btn btn-light" href="/home/novoEvento">Novo evento</a>
   </li>
+  
+  <li class="nav-item">
+          <a class="nav-link btn btn-light" href="/home/novaCasa">Nova casa de Show</a>
+  </li>
+  
   <li class="nav-item">
     <a class="nav-link btn btn-light " href="/home/listaShows">Shows Cadastrados</a>
   </li>
@@ -50,22 +44,25 @@
   </li>
   
   
+  
 </ul>
 
 <section layout:fragment="conteudo"></section>
 
-
+	
 
 	<script src="/js/jquery-3.4.1.min.js"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script src="/js/bootstrap-datepicker.min.js"></script>
 	<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
 	
+	<script th:src="@{/js/jquery.maskMoney.min.js}"></script>
+	
 	<script src="/js/index.js"></script>
-	<script src="/js/jquery.maskMoney.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+	
+
+
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	
 </body>
 </html>
