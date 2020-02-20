@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao" 
+	>
+	
+
+<section layout:fragment="conteudo">
+ 
+ <h2 class="section_title">Casas de shows cadastradas</h2>
+ 
+	<table class="table table-striped container " id="tabela" >
+    <tbody>
+    <tr >
+    
+        <th  >  <img src="/imagens/endereco.png" width="20" height="20" id="icone"> Endereço  </th>
+        <th class="text-center" width="15%" title="Número" rel="tooltip" data-placement="top"> <img src="/imagens/numero.png" width="20" height="20" > </th>
+        <th class="text-center" width="15%" title="Cidade" rel="tooltip" data-placement="top"> <img src="/imagens/cidade.png" width="20" height="20"  > </th>
+        <th class="text-center" >Nome da Casa</th>
+        <th></th>
+    </tr> 
+  
+    <tr th:each="selecionarCasa : ${todasCasasShow}"  id="th1" > 
+    
+
+        <td th:text="${selecionarCasa.enderecoCasa}"></td>
+        <td class="text-center" th:text="${selecionarCasa.numeroCasa}"></td>
+        <td class="text-center" th:text="${selecionarCasa.cidadeCasa}"></td>
+        <td class="text-center" th:text="${selecionarCasa.nomeCasa}"></td>
+        <td>
+        	<a class = "btn btn-link btn-xs" title="Editar" rel="tooltip" data-placement="top" th:href="@{/home/novaCasa/{codigo}(codigo=${selecionarCasa.codigo})}" >
+        		<span  ><img src="/imagens/editar.png" width="30" height="30"> </span>
+        	</a>
+        	<a class = "btn btn-link btn-xs" title="Excluir" rel="tooltip" data-placement="top" data-toggle="modal" data-target="#excluirCasa" th:attr="data-codigo=${selecionarCasa.codigo}" >
+        		<span  ><img src="/imagens/excluir.png" width="25" height="25"> </span>
+        	</a>
+        </td>
+       
+        
+    </tr>
+    <tr>
+		<td class="text-center" colspan="6" th:if="${#lists.isEmpty(todasCasasShow)}">Nenhuma Casa foi encontrada. 
+		<a id="botaoLogin2" type="button" class="btn btn-dark" href="/home/novaCasa">Cadastrar nova Casa</a> </td>
+	</tr>
+
+<tbody> 
+</table>
+<div layout:insert="ValidacaoExclucao"></div>
+
+ 
+ 
+ 
+</section>

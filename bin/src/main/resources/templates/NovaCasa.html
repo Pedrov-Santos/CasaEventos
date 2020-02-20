@@ -9,13 +9,28 @@
 <h2 class="section_title">Nova Casa De Show</h2>
 
 	<form class="needs-validation" method="POST" action="/home/novaCasa" th:object="${casaShow}">
-<input type = "hidden" th:field="*{codigo}"/>
+	
+	<input type = "hidden" th:field="*{codigo}"/>
+	
+	<div class="alert alert-success"
+			th:if="${! #strings.isEmpty(mensagem)}">
+			<button type="button" class="close " data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+			<span th:text="${mensagem}">Moto salva !!!!!</span>
+		</div>
+
+		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+			<div th:each="detailedError : ${#fields.detailedErrors()} ">
+			<button type="button" class="close " data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+				<span th:text="${detailedError.message}"></span>
+			</div>
+		</div>
+	
+	
 		
-	<div layout:insert="MensagemSuccess"></div>
-	
-	<div layout:insert="MensagemDanger"></div>		
-	
-	
 			<div class="form-gruop row ">
 
 				<label for="enderecoCasa"

@@ -7,30 +7,28 @@
 <section layout:fragment="conteudo">
 
 
-<form class="needs-validation" method="POST" action="/home/novoEvento"  th:if="${!#lists.isEmpty(todasCasasShow)}" th:object="${novoShow}" >
+	<form class="needs-validation responsive" method="POST" action="/home/novoEvento" th:if="${!#lists.isEmpty(todasCasasShow)}">
 	
-		<input type = "hidden" th:field="*{codigo}"/>
 	
-	<div layout:insert="MensagemSuccess"></div>
-	
-	<div layout:insert="MensagemDanger"></div>
-			
-		<h2 class="section_title">Novo Evento</h2>
+<h2 class="section_title">Novo Evento</h2>
 		
 	
-	<div class="form-gruop row ">
+		<div class="form-gruop row ">
 
-			<label for="nomeEvento" class="col-sm-3 col-form-label text-right">Nome do Evento</label>
-		<div class="col-sm-4">
-			<input type="text"  required class="form-control" id="nomeEvento" th:field="*{nomeEvento}" placeholder="ex: show da Eduarda" th:classappend="${#fields.hasErrors('nomeEvento') } ? 'is-invalid'" >
+			<label for="nomeEvento"
+				class="col-sm-3 col-form-label text-right">Nome do Evento</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="nomeEvento" name="nomeEvento"
+					placeholder="ex: show da xuxa" required>
+			</div>
+
 		</div>
-
-	</div>
 		<div class="form-gruop row ">
 
 			<label for="capacidadeEvento" class="col-sm-3 col-form-label text-right ">Capacidade de Pessoas</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control" id="capacidadeEvento" th:field="*{capacidadeEvento}" placeholder="ex: 1000" required th:classappend="${#fields.hasErrors('capacidadeEvento') } ? 'is-invalid'" >
+				<input type="text" class="form-control" id="capacidadeEvento" name="capacidadeEvento"
+					placeholder="ex: 1000" required>
 			</div>
 
 		</div>
@@ -40,8 +38,8 @@
 
 			<label for="valorEvento" class="col-sm-3 col-form-label text-right ">Valor do Ingresso</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control js-valor" id="valorEvento" th:field="*{valorEvento}"
-					placeholder="ex: 550,00" required th:classappend="${#fields.hasErrors('valorEvento') } ? 'is-invalid'" >
+				<input type="text" class="form-control" id="valorEvento" name="valorEvento"
+					placeholder="ex: 550,00" required>
 			</div>
 
 		</div>
@@ -50,18 +48,18 @@
 			<div class="form-group row">
 				<label for="dataEvento"class="col-sm-3 col-form-label text-right">Data Do Evento</label>
 				<div class="col-sm-2">
-					<input type="text" class=" form-control" id="dataEvento" th:field="*{dataEvento}"
-						 placeholder="ex: 22/04/1999" required  th:classappend="${#fields.hasErrors('dataEvento') } ? 'is-invalid'"
+					<input type="text" class=" form-control" id="dataEvento" name="dataEvento"
+						 placeholder="ex: 22/04/1999" required
 						data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
 						data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="buttom"/>
 				</div>
 			</div>
 		
-		<div class="form-gruop row ">  
+		<div class="form-gruop row ">
 			<label class="col-sm-3 col-form-label text-right"
 				for="selecionarGenero">Selecionar Gênero</label>
 			<div class="col-sm-2">
-				<select class="form-control" id="selecionarGenero"  th:field="*{selecionarGenero}" >
+				<select class="form-control" id="selecionarGenero" name ="selecionarGenero"> 
 					<option th:each="selecionarGenero : ${todosGeneros}" th:value="${selecionarGenero}" th:text="${selecionarGenero.descricao}"></option>
 					
 				</select>
@@ -71,7 +69,7 @@
 			<label class="col-sm-3 col-form-label text-right"
 				for="selecionarCasas">Escolher Casa de show do Evento</label>
 			<div class="col-sm-2">
-				<select class="form-control" id="selecionarCasas"   name="selecinarCasas">
+				<select class="form-control" id="selecionarCasas" name="selecinarCasas">
 				
 				<option th:each="Casa : ${todasCasasShow}"
 							th:value="${Casa.codigo}" th:text="${Casa.nomeCasa}"></option>

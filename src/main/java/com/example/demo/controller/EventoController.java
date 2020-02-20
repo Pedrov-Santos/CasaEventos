@@ -6,6 +6,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -42,8 +43,10 @@ public class EventoController {
 	}
 	
 	@RequestMapping("/novoEvento")
-	public String novoEvento() {
-		return "NovoEvento";
+	public ModelAndView novoEvento() {
+		ModelAndView mv = new ModelAndView("NovoEvento");
+		mv.addObject(new NovoShow());
+		return mv ;
 	}
 	@RequestMapping("/novaCasa")
 	public ModelAndView novaCasa() {
@@ -51,9 +54,9 @@ public class EventoController {
 		mv.addObject(new CasaShow());
 		return mv;
 	}
-	@RequestMapping("/novoGenero")
+	@RequestMapping("/listaShows")
 	public String novaGenero() {
-		return "Genero";
+		return "ListaDeShows";
 	}
 	
 	@RequestMapping("/listaCasas")
@@ -66,25 +69,35 @@ public class EventoController {
 	
 	@RequestMapping(value = "/novaCasa" , method = RequestMethod.POST)
 	public String salvarCasa(@Validated CasaShow casashow, Errors errors , RedirectAttributes attributes) {
-		ModelAndView mv = new ModelAndView("NovaCasa");
 		
 		if (errors.hasErrors()) {
 			return "NovaCasa";
 		}
 		
-		mv.addObject("mensagem", "Casa salva com sucesso.");
+
 		casas.save(casashow);
 		attributes.addFlashAttribute("mensagem", "Casa Salva com sucesso");
-		
 		
 	 return "redirect:/home/novaCasa";
 	}
 	
 	
 	@RequestMapping(value="/novoEvento" , method = RequestMethod.POST)
-	public String salvarShow(NovoShow novoshows) {
+	public String salvarShow(@Validated NovoShow novoshows , Errors errors , RedirectAttributes attributes) {
+		
+		if (errors.hasErrors()) {
+			return "NovoEvento";
+		}
+		try {
 		shows.save(novoshows);
-		return "Home";
+		attributes.addFlashAttribute("mensagem", "Evento salvo!!!");
+		
+		return "redirect:/home/novoEvento";
+		}catch (DataIntegrityViolationException e) {
+			errors.rejectValue("dataEvento", null, "Formato de DATA inválido.");
+			
+		}
+		return "redirect:/home/novoEvento";
 	}
 	
 	////////////////////////////////////// EDITAR /////////////////////////////////////////////////////////
@@ -96,6 +109,13 @@ public class EventoController {
 		return mv ;
 	}
 	
+	@RequestMapping("/novoEvento/{codigo}")
+	public ModelAndView editarShow(@PathVariable ("codigo") NovoShow showEditar) {
+		ModelAndView mv = new ModelAndView("NovoEvento");
+		mv.addObject(showEditar);
+		return mv;
+	}
+	
 	
 	
 	////////////////////////////////////// EXCLUIR //////////////////////////////////////////////////
@@ -103,8 +123,13 @@ public class EventoController {
 	@RequestMapping(value = "/listaCasas/{codigo}" , method = RequestMethod.POST )
 	public String excluirCasa(@PathVariable Long codigo) {
 		casas.deleteById(codigo);
-		return "redirect:/home/listaCasas";
-		
+		return "redirect:/home/listaCasas";	
+	}
+	
+	@RequestMapping(value = "/listaShows/{codigo}", method = RequestMethod.POST)
+	public String excluirShow(@PathVariable Long codigo) {
+		shows.deleteById(codigo);
+		return "redirect:/home/listaShows";
 		
 	}
 	////////////////////////////////////// LISTAS //////////////////////////////////////////////////
@@ -113,6 +138,12 @@ public class EventoController {
 	public List<CasaShow> todasCasasShow(){
 		
 		return casas.findAll();
+	}
+	
+	@ModelAttribute("todosShows")
+	public List<NovoShow> todosShows(){
+		return shows.findAll();
+		
 	}
 	
 	@ModelAttribute("todosGeneros")

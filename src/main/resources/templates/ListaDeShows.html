@@ -1,0 +1,52 @@
+ <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+<section layout:fragment="conteudo">
+
+<h2 class="section_title">Shows Cadastrados</h2>
+
+	<table class="table table-striped container " id="tabela" >
+    <tbody>
+    <tr >
+    
+        <th width="15%" >Evento <img src="/imagens/listaShow/evento.png" width="25" height="25" ></th>
+        <th class="text-center" width="10%" title="Capacidade Total" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/capacidade.png"  width="25" height="25" > </th>
+        <th class="text-center" width="10%" title="Valor do Ingresso" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/valor.png"  width="25" height="25"  > </th>
+        <th class="text-center" width="15%" title="Data" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/dataEvento.png"  width="25" height="25" ></th>
+        <th class="text-center" width="10%" title="Gênero" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/genero.png"  width="25" height="25" ></th>
+        <th class="text-center" width="25%" title="Casa do Show" rel="tooltip" data-placement="top"> <img src="/imagens/listaShow/casa.png"  width="25" height="25"></th>
+        <th class="text-right"  width="20%"></th>
+    </tr> 
+  
+    <tr th:each=" evento : ${todosShows}" id="th1"> 
+    
+
+        <td th:text="${evento.nomeEvento}"></td>
+        <td class="text-center" th:text="${evento.capacidadeEvento}"></td>
+        <td class="text-center" th:text="|R$ ${{evento.valorEvento}}|"></td>
+        <td class="text-center" th:text="${evento.dataEvento}"></td>
+        <td class="text-center" th:text="${evento.selecionarGenero.descricao}"></td>
+        <td class="text-center" th:text=${evento.selecinarCasas.nomeCasa} ></td>
+        <td class="text-right">
+        	<a class = "btn btn-link btn-xs" title="Editar" rel="tooltip" data-placement="top" th:href="@{/home/novoEvento/{codigo}(codigo=${evento.codigo})}" >
+        		<span  ><img src="/imagens/editar.png" width="30" height="30"> </span>
+        	</a>
+        	<a class = " btn btn-link btn-xs  " title="Excluir" rel="tooltip" data-placement="top" data-toggle="modal" data-target="#excluirShow" th:attr="data-codigo=${evento.codigo}" >
+        		<span  ><img src="/imagens/excluir.png" width="25" height="25"> </span>
+        	</a>
+        </td>
+    </tr>
+    <tr>
+		<td class="text-center" colspan="6" th:if="${#lists.isEmpty(todosShows)}">Nenhum Show foi encontrado. 
+		<a id="botaoLogin2" type="button" class="btn btn-dark" href="/home/novoEvento">Cadastrar novo show</a> </td>
+	</tr>
+    <tbody> 
+</table>
+<div layout:insert="ValidacaoExclucao"></div>
+
+
+
+</section>
