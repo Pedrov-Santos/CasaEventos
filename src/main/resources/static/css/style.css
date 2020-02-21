@@ -28,9 +28,9 @@
     
 }
 .body{
-	background-image: url(/imagens/fundo.jpg);
+	background-image: url(/imagens/fundo6.jpg);
 	background-repeat: no-repeat;
-	background-size: 110%
+	background-size: 150%
 }
 .nav{
     text-transform: uppercase;
@@ -99,6 +99,32 @@
 #th1{
 	 border-bottom: 1px solid #fff; 
 }
+.our_event_list {
+    
+     border-bottom: 1px solid #fff; 
+    
+     font-weight: bold;
+     color: #fff;
+     
+     
+}
+
+#botaoLogin3{
+	
+	
+	
+	border-radius: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 5px 4px 5px 0;
+	
+}
+#texto{
+	color: white;
+}
+
+
+
 
 
 

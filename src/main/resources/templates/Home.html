@@ -75,22 +75,79 @@
     <div class="slider__control-line"></div>
   </div>  
   
- <div th:each>
-  <div class="card text-center">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
-</div>
- </div>
 
+
+                       <h2 class="section_title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lista de eventos</font></font></h2>
+<div class="container form-group">
+                       
+                 <div  th:each=" evento : ${todosShows}" class="form-group row">
+                 
+                
+                                                
+					   
+					   
+					   
+					<div class="our_event_list ">
+							<div class="  col-sm-2"> 
+								<img th:src="@{/imagens/generos/{nomeImagem}.jpg(nomeImagem=${evento.selecionarGenero})}"  width="75" height="60"> 
+							</div>	
+					</div>
+							
+					 <div class="col-sm-3 our_event_list">
+						<div class="ajuste">
+							   <div > 
+							   		<h3> <a th:text="${evento.nomeEvento}"> </a> </h3>
+							   </div>
+						</div>
+							   
+						<div class="ajuste">
+							 <h5> <a th:text="${evento.selecionarGenero.descricao}" ></a> </h5> 
+						</div>
+						   
+					</div>
+						  	   
+					
+					   
+                  <div class="our_event_list fadeInDown col-sm-2">
+    
+	 
+					   <div class="event_common event_date ">
+						  <div ><h5><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><img src="/imagens/listaShow/dataEvento.png"  width="25" height="25"> <a th:text="${{evento.dataEvento}}"></a> </font></font></h5></div>
+					   </div>
+				  </div>
+					  
+				
+						<div class="event_common event_location our_event_list ">    
+							<div >
+								<h6> <img  src="/imagens/local.png"  width="25" height="25" title="Local" rel="tooltip" data-placement="top"> <a href="/home/listaCasas" th:text=${evento.selecinarCasas.nomeCasa} id="texto"> </a> </h6>
+							</div>   
+						</div>
+					
+					
+						<div class="event_common event_time our_event_list ">    	
+							<div class="col-sm-3" >
+								<h6> <a th:text="|R$${{evento.valorEvento}}| "> </a> </h6>
+							</div> 	
+							
+							<div >
+							  	<img  src="/imagens/ingresso.png"  width="25" height="25" title="Ingressos disponiveis" rel="tooltip" data-placement="top" > <a th:text="${evento.capacidadeEvento}" ></a>
+							</div>					
+						</div>
+						
+						<div class=" our_event_list col-sm-2 "> 
+						
+						 <a  href="#"  id="botaoLogin3"  type="button" class="btn btn-outline-dark "> <img alt="" src="/imagens/pagar.png" width="25" height="25" title="Comprar" rel="tooltip" data-placement="top"> </a> 
+						 <a  href="#"  id="botaoLogin3"  type="button" class="btn btn-outline-dark "> <img alt="" src="/imagens/carrinho.png" width="25" height="25" title="Adicionar ao Carrinho" rel="tooltip" data-placement="top"> </a> 
+						</div>
+					
+					
+					</div>
+					
+				</div>                 
+              
+          
+                 
+                 
 	
 </section>
 
