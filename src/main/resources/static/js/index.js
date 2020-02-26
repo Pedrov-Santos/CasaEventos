@@ -33,4 +33,3 @@ $(function(){
 	$('.js-currency').maskMoney({decimal: ',' , thousands: '.' , allowzero: true  });
 });
 
-document.querySelector("#section1 > div > div:nth-child(1)")

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+<section layout:fragment="conteudo">
+
+<h2 class="section_title">Carrinho de Compras</h2>
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive"  >
+                <table class="table table-striped">
+                    <thead id="texto-cor">
+                        <tr>
+                            <th > </th>
+                            <th >Product</th>
+                            <th >Available</th>
+                            <th  class="text-center">Quantity</th>
+                            <th  class="text-right">Price</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody id="texto-cor">
+                        <tr>
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td>Product Name Dada</td>
+                            <td>In stock</td>
+                            <td class="text-center">
+                            	<a class = "btn ">
+        							<span  ><img src="/imagens/add.png" width="30" height="30"> </span>
+        						</a>
+        						
+                            	<a class = "btn ">
+        							<span  ><img src="/imagens/remove.png" width="36" height="36"> </span>
+        						</a>
+        					</td>
+                            <td class="text-right">124,90 €</td>
+                            <td> 
+                            <a  href="#"  id="botaoLogin"  type="button" class="btn btn-outline-danger"> <img alt="" src="/imagens/excluir.png" width="25" height="25" title="Excluir" rel="tooltip" data-placement="top"> </a> 
+                            </td>
+                        </tr>
+                     
+                       
+                       
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right"><strong>346,90 €</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <button class="btn btn-block btn-light">Continuar Comprando</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</section>

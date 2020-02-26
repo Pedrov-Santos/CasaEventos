@@ -64,6 +64,23 @@ public class EventoController {
 		return "ListaDeCasas";
 	}
 	
+	////////////////////////////////////////////// CARRINHO ////////////////////////////////////////////////
+	
+	
+	@RequestMapping("/carrinho")
+	public ModelAndView carrinho() {
+	ModelAndView mv = new ModelAndView("Carrinho");
+	return  mv ;
+	}
+	
+	@RequestMapping("/carrinho/addCarrinho/{codigo}")
+	public ModelAndView addcarrinho(@PathVariable Long codigo) {
+		System.out.println("codigo:" + codigo);
+	ModelAndView mv = new ModelAndView("Carrinho");
+	return  mv ;
+	}
+	
+	
 	
 	/////////////////////////////////////////////// SALVAR /////////////////////////////////////////////////
 	

@@ -63,8 +63,7 @@
 	margin:5px 0 5px 0;
 }
 .list-group{
-		margin: 10px 200px 0 200px ;
-	
+	margin: 10px 200px 0 200px ;	
 	font-weight: bold;
 	opacity : 0.5;
 	   
@@ -122,6 +121,15 @@
 #texto{
 	color: white;
 }
+
+#texto-cor{
+
+   
+    
+   color: white;
+    
+}
+
 
 
 

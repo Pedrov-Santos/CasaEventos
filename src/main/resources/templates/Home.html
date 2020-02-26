@@ -78,7 +78,7 @@
 
 
                        <h2 class="section_title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lista de eventos</font></font></h2>
-<div class="container form-group">
+<div class="container container-responsive form-group ">
                        
                  <div  th:each=" evento : ${todosShows}" class="form-group row">
                  
@@ -136,7 +136,7 @@
 						
 						<div class=" our_event_list col-sm-2 "> 
 						
-						 <a  href="#"  id="botaoLogin3"  type="button" class="btn btn-outline-dark "> <img alt="" src="/imagens/pagar.png" width="25" height="25" title="Comprar" rel="tooltip" data-placement="top"> </a> 
+						 <a  th:href="@{/home/carrinho/addCarrinho/{codigo}(codigo=${evento.codigo})}"  id="botaoLogin3"  type="button" class="btn btn-outline-dark "> <img alt="" src="/imagens/pagar.png" width="25" height="25" title="Comprar" rel="tooltip" data-placement="top"> </a> 
 						 <a  href="#"  id="botaoLogin3"  type="button" class="btn btn-outline-dark "> <img alt="" src="/imagens/carrinho.png" width="25" height="25" title="Adicionar ao Carrinho" rel="tooltip" data-placement="top"> </a> 
 						</div>
 					
