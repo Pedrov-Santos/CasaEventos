@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -39,7 +38,7 @@ public class NovoShow {
 	@DecimalMin(value = "0.01", message ="Valor minimo R$ 0,01.")
 	@DecimalMax(value = "999999999.99", message ="Valor máximo é de R$ 999.999.999,99")
 	@NumberFormat(pattern = "#,##0.00")
-	private BigDecimal valorEvento;
+	private Double valorEvento;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
@@ -66,11 +65,11 @@ public class NovoShow {
 		this.capacidadeEvento = capacidadeEvento;
 	}
 
-	public BigDecimal getValorEvento() {
+	public Double getValorEvento() {
 		return valorEvento;
 	}
 
-	public void setValorEvento(BigDecimal valorEvento) {
+	public void setValorEvento(Double valorEvento) {
 		this.valorEvento = valorEvento;
 	}
 

@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.CasaShow;
+import com.example.demo.model.ItensCompras;
 import com.example.demo.model.NovoShow;
 import com.example.demo.model.StatusSelecionarGenero;
 import com.example.demo.repository.Casas;
@@ -66,17 +68,31 @@ public class EventoController {
 	
 	////////////////////////////////////////////// CARRINHO ////////////////////////////////////////////////
 	
+	private List<ItensCompras> itensCompra = new ArrayList<ItensCompras>();
+	
 	
 	@RequestMapping("/carrinho")
 	public ModelAndView carrinho() {
 	ModelAndView mv = new ModelAndView("Carrinho");
+	
+	mv.addObject("listaVenda" , itensCompra);
+	
 	return  mv ;
 	}
 	
 	@RequestMapping("/carrinho/addCarrinho/{codigo}")
 	public ModelAndView addcarrinho(@PathVariable Long codigo) {
-		System.out.println("codigo:" + codigo);
 	ModelAndView mv = new ModelAndView("Carrinho");
+	Optional<NovoShow> compra = shows.findById(codigo);
+	NovoShow show = compra.get();
+	
+	ItensCompras item = new ItensCompras();
+	item.setShow(show);
+	item.setValorUnitario(show.getValorEvento());
+	item.setQuantidade(item.getQuantidade()+1);
+	itensCompra.add(item);
+	
+	mv.addObject("listaVenda" , itensCompra);
 	return  mv ;
 	}
 	
