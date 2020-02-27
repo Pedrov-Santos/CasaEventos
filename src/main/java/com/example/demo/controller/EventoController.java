@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.CasaShow;
+import com.example.demo.model.Compra;
 import com.example.demo.model.ItensCompras;
 import com.example.demo.model.NovoShow;
 import com.example.demo.model.StatusSelecionarGenero;
@@ -70,35 +71,111 @@ public class EventoController {
 	
 	private List<ItensCompras> itensCompra = new ArrayList<ItensCompras>();
 	
+	private Compra compra = new Compra();
+	
+	public void calcularCompra() {
+		compra.setValorTotal(0.);
+		for (ItensCompras it : itensCompra) {
+			compra.setValorTotal(compra.getValorTotal() + it.getValorTotal());
+		}
+	}
+	
+	
 	
 	@RequestMapping("/carrinho")
 	public ModelAndView carrinho() {
 	ModelAndView mv = new ModelAndView("Carrinho");
+	calcularCompra();
 	
+	mv.addObject("compra" , compra);
 	mv.addObject("listaVenda" , itensCompra);
 	
 	return  mv ;
 	}
 	
+	
+	
+	/////////////////////////////////////////// ALTERAR QUANTIDADE ////////////////////////////////////////////////////
+	
+	@RequestMapping("/alterarQuantidadeIngressos/{codigo}/{alteracao}")
+	public String alterarQuantidadeIngressos(@PathVariable Long codigo , @PathVariable Integer alteracao) {
+	
+	for(ItensCompras it : itensCompra) {
+		
+		if(it.getShow().getCodigo().equals(codigo)) {
+			
+			if(alteracao == 1) {
+			it.setQuantidade(it.getQuantidade()+1);
+			it.setValorTotal(0.);
+			it.setValorTotal(it.getValorTotal() + (it.getQuantidade()*it.getValorUnitario()));
+			
+		}
+		else if (alteracao == 0) {
+			it.setQuantidade(it.getQuantidade()-1);
+			it.setValorTotal(0.);
+			it.setValorTotal(it.getValorTotal() + (it.getQuantidade()*it.getValorUnitario()));
+		}
+			break;
+		}
+	}
+	return  "redirect:/home/carrinho";
+	}
+	
+	/////////////////////////////////////// REMOVER DO CARRINHO ///////////////////////////////////////////////
+	
+	@RequestMapping("/removerCarrinho/{codigo}")
+	public String removerIngressos(@PathVariable Long codigo) {
+	
+	for(ItensCompras it : itensCompra) {
+		if(it.getShow().getCodigo().equals(codigo)) {
+			itensCompra.remove(it);
+			break;
+		}
+		
+	}
+	return  "redirect:/home/carrinho";
+	}
+	
+	/////////////////////////////////////// ADD CARRINHO ////////////////////////////////////////////////////////
+	
+	
+	
 	@RequestMapping("/carrinho/addCarrinho/{codigo}")
-	public ModelAndView addcarrinho(@PathVariable Long codigo) {
-	ModelAndView mv = new ModelAndView("Carrinho");
+	public String addcarrinho(@PathVariable Long codigo) {
 	Optional<NovoShow> compra = shows.findById(codigo);
 	NovoShow show = compra.get();
+	
+	int controle = 0 ;
+	for(ItensCompras it : itensCompra) {
+		if(it.getShow().getCodigo().equals(show.getCodigo())) {
+			it.setQuantidade(it.getQuantidade()+1);
+			it.setValorTotal(0.);
+			it.setValorTotal(it.getValorTotal() + (it.getQuantidade()*it.getValorUnitario()));
+				controle = 1;
+				break;
+		}	
+	}
+	if(controle == 0) {
 	
 	ItensCompras item = new ItensCompras();
 	item.setShow(show);
 	item.setValorUnitario(show.getValorEvento());
 	item.setQuantidade(item.getQuantidade()+1);
-	itensCompra.add(item);
 	
-	mv.addObject("listaVenda" , itensCompra);
-	return  mv ;
+	item.setValorTotal(item.getValorTotal() + (item.getQuantidade()*item.getValorUnitario()));
+	itensCompra.add(item);
+	}
+	
+	return "redirect:/home/carrinho" ;
 	}
 	
 	
 	
 	/////////////////////////////////////////////// SALVAR /////////////////////////////////////////////////
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/novaCasa" , method = RequestMethod.POST)
 	public String salvarCasa(@Validated CasaShow casashow, Errors errors , RedirectAttributes attributes) {

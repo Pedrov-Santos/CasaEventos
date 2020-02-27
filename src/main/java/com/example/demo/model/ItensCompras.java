@@ -15,13 +15,15 @@ public class ItensCompras {
 	@ManyToOne
 	private Compra compra;
 	
-	private int quantidade;
+	private Integer quantidade =0;
 	
-	private Double valorUnitario;
+	private Double valorUnitario=0.;
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long codigo;
+	
+	private Double valorTotal=0.;
 
 	public NovoShow getShow() {
 		return show;
@@ -61,6 +63,14 @@ public class ItensCompras {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}
+
+	public Double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 	
 	

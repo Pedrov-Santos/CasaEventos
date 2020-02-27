@@ -6,40 +6,47 @@
 
 <section layout:fragment="conteudo">
 
-<h2 class="section_title">Carrinho de Compras</h2>
 
-<div class="container mb-4">
+<div class="container mb-4" th:if="${!#lists.isEmpty(listaVenda)}">
+<h2 class="section_title">Carrinho de Compras</h2>
     <div class="row">
         <div class="col-12">
             <div class="table-responsive"  >
                 <table class="table table-striped">
-                    <thead id="texto-cor">
+                     <tbody id="texto-cor">
                         <tr>
                             <th > </th>
-                            <th >Product</th>
-                            <th >Available</th>
-                            <th  class="text-center">Quantity</th>
-                            <th  class="text-right">Price</th>
+                            <th >Show</th>
+                            <th class="text-center">Ingressos disponíveis</th>
+                            <th  class="text-center">Quantidade de ingressos</th>
+                            <th  class="text-right">Valor</th>
                             <th> </th>
                         </tr>
-                    </thead>
-                    <tbody id="texto-cor">
-                        <tr th:each="venda : ${listaVenda}" >
-                            <td> <img  width="75" height="60">  </td>
-                            <td>Product Name Dada</td>
-                            <td>In stock</td>
+
+                  
+                    
+                        <tr th:each="venda : ${listaVenda}">
+                            <td> <img  th:src="@{/imagens/generos/{nomeImagem}.jpg(nomeImagem=${venda.show.selecionarGenero})}" width="70" height="60">   </td>
+                            <td th:text="${venda.show.nomeEvento}"></td>
+                            <td class="text-center" th:text="${venda.show.capacidadeEvento}"></td>
                             <td class="text-center"> 
-                            	<a class = "btn ">
+                            	<a class = "btn btn-link btn-xs" th:href="@{/home/alterarQuantidadeIngressos/{codigo}/{alteracao}(codigo=${venda.show.codigo} , alteracao=${1} )}">
         							<span  ><img src="/imagens/add.png" width="30" height="30"> </span>
         						</a>
-        						10	
-                            	<a class = "btn ">
+        						
+        						<a th:text="${venda.quantidade}"></a>	
+        						
+                            	<a class = "btn btn-link btn-xs" th:if="${venda.quantidade} > 1" th:href="@{/home/alterarQuantidadeIngressos/{codigo}/{alteracao}(codigo=${venda.show.codigo} , alteracao=${0} )}">    
         							<span  ><img src="/imagens/remove.png" width="36" height="36"> </span>
         						</a>
         					</td>
-                            <td class="text-right">124,90 €</td>
-                            <td> 
-                            <a  href="#"  id="botaoLogin"  type="button" class="btn btn-outline-danger"> <img alt="" src="/imagens/excluir.png" width="25" height="25" title="Excluir" rel="tooltip" data-placement="top"> </a> 
+                            <td class="text-right" th:text="|R$ ${{venda.show.valorEvento}}|"></td>
+                           
+                            <td class="text-right"> 
+                            
+                            <a class="btn btn-outline-danger btn-link btn-xs" th:href="@{/home/removerCarrinho/{codigo}(codigo=${venda.show.codigo})}" >  
+                            	<span> <img alt="" src="/imagens/excluir.png" width="25" height="25" title="Excluir" rel="tooltip" data-placement="top"></span> 
+                            </a> 
                             </td>
                         </tr>
                      
@@ -49,9 +56,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td class="text-right" ><strong>Total:</strong></td>
+                            <td class="text-right" th:text="|R$ ${{compra.valorTotal}}|"><strong></strong></td>
                             <td></td>
-                            <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>346,90 €</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -68,8 +75,13 @@
             </div>
         </div>
         
-    </div>
+    
+    
 </div>
+    </div>
+     <div class="text-center section_title" th:if="${#lists.isEmpty(listaVenda)}"> O seu carrinho está vazio!  <img alt="" src="/imagens/vazio.png" width="40" height="40"> 
+		
+	 </div>
 
 
 </section>

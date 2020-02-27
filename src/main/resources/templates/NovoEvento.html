@@ -6,6 +6,7 @@
 
 <section layout:fragment="conteudo">
 
+		<h2 class="section_title">Novo Evento</h2>
 
 <form class="needs-validation" method="POST" action="/home/novoEvento"  th:if="${!#lists.isEmpty(todasCasasShow)}" th:object="${novoShow}" >
 	
@@ -15,7 +16,6 @@
 	
 	<div layout:insert="MensagemDanger"></div>
 			
-		<h2 class="section_title">Novo Evento</h2>
 		
 	
 	<div class="form-gruop row ">

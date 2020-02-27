@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.NumberFormat;
+
 @Entity
 public class Compra {
 
@@ -25,7 +27,8 @@ public class Compra {
 	
 	private String formaPagamento; 
 	
-	private Double valorTotal;
+	@NumberFormat(pattern = "#,##0.00")
+	private Double valorTotal=0. ;
 
 	public Long getCodigo() {
 		return codigo;

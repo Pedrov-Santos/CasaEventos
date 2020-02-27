@@ -6,6 +6,7 @@
 
 <section layout:fragment="conteudo">
 
+          <h2 class="section_title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">proximos eventos</font></font></h2>
 
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -77,8 +78,10 @@
   
 
 
-                       <h2 class="section_title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lista de eventos</font></font></h2>
-<div class="container container-responsive form-group " id="listaEventos">
+                       
+	<div class="container container-responsive form-group " id="listaEventos">
+
+          <h2 class="section_title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eventos Disponíveis</font></font></h2>
                        
                  <div  th:each=" evento : ${todosShows}" class="form-group row">
                  
@@ -137,17 +140,15 @@
 						<div class=" our_event_list col-sm-2 "> 
 						
 						 <a  th:href="@{/home/carrinho/addCarrinho/{codigo}(codigo=${evento.codigo})}"  id="botaoLogin3"  type="button" class="btn btn-outline-dark "> <img alt="" src="/imagens/pagar.png" width="25" height="25" title="Comprar" rel="tooltip" data-placement="top"> </a> 
-						 <a  href="#"  id="botaoLogin3"  type="button" class="btn btn-outline-dark "> <img alt="" src="/imagens/carrinho.png" width="25" height="25" title="Adicionar ao Carrinho" rel="tooltip" data-placement="top"> </a> 
+						 <a   id="botaoLogin3"  type="button" class="btn btn-outline-dark "> <img alt="" src="/imagens/carrinho.png" width="25" height="25" title="Adicionar ao Carrinho" rel="tooltip" data-placement="top"> </a> 
 						</div>
 					
 					
 					</div>
 					
 				</div>                 
-              
-          
-                 
-                 
-	
+                 	<div>
+						<h3 class="section text-center"  th:if="${#lists.isEmpty(todosShows)}">Por enquanto não temos nenhum evento disponível. <img alt="" src="/imagens/98.png" width="40" height="40"> </h3>
+					</div>
 </section>
 
